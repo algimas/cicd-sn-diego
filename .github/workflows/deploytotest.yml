@@ -16,17 +16,15 @@ jobs:
 
     - name: Publish to Store
       id: sncicd-publish-app
-      #uses: ServiceNow/sncicd-publish-app@1.2.0
       uses: ServiceNow/sncicd-publish-app@2.0.1
       with:
         versionFormat: detect
-        # If true, require appSysID instead of appScope
-        isAppCustomization: true
       env:
         nowUsername: ${{ secrets.NOW_USERNAME }}
         nowPassword: ${{ secrets.NOW_PASSWORD }}
         nowSourceInstance: ${{ secrets.NOW_DEV_INSTANCE }}
         appSysID: ${{ secrets.APP_SYS_ID }}
+        appScope: ${{ secrets.APP_SCOPE }}
 
     - name: Create Tag in repository
       if: ${{ success() && steps.sncicd-publish-app.outputs.newVersion }}
