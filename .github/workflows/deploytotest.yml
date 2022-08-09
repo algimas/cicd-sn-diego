@@ -20,6 +20,8 @@ jobs:
       uses: ServiceNow/sncicd-publish-app@2.0.1
       with:
         versionFormat: detect
+        # If true, require appSysID instead of appScope
+        isAppCustomization: true
       env:
         nowUsername: ${{ secrets.NOW_USERNAME }}
         nowPassword: ${{ secrets.NOW_PASSWORD }}
