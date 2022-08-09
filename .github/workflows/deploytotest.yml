@@ -16,7 +16,8 @@ jobs:
 
     - name: Publish to Store
       id: sncicd-publish-app
-      uses: ServiceNow/sncicd-publish-app@1.2.0
+      #uses: ServiceNow/sncicd-publish-app@1.2.0
+      uses: ServiceNow/sncicd-publish-app@2.0.1
       with:
         versionFormat: detect
       env:
@@ -24,7 +25,7 @@ jobs:
         snowPassword: ${{ secrets.NOW_PASSWORD }}
         snowSourceInstance: ${{ secrets.NOW_DEV_INSTANCE }}
         appSysID: ${{ secrets.APP_SYS_ID }}
-          
+
     - name: Create Tag in repository
       if: ${{ success() && steps.sncicd-publish-app.outputs.newVersion }}
       uses: tvdias/github-tagger@v0.0.2
